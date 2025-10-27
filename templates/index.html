@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/pop.css')}}">
+
+    <!-- Mapa CSS -->
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+     <!-- Mapa JS -->
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+</head>
+<body>
+    <header> </header>
+    <main>
+        <div class="titulo-historico"><p>Seu histórico</p><button>Filtro</button></div>
+        <!--<div id="lista-filtro">
+            <ul>
+                <li>a.................</li>
+                <li>b</li>
+                <li>c</li>
+                <li>d</li>
+            </ul>
+        </div>-->
+        <div class="main2">
+            <div class="bloco-historico">
+                {% for problema in problemas %}
+                <div class="denuncia-container">
+                    <a href="#" class="denuncia-historico" data-id="{{loop.index}}">
+                        <div>
+                            <img class="img-hist" src="{{problema.imagem_url}}">
+                        </div>
+                        <div>
+                            <p>{{problema.nome}}</p>
+                        </div>
+                        <div>
+                            <p id="denuncia-hist-p">Status</p>
+                            <img src="{{url_for('static', filename='assets/images/icone-errado.png')}}" width="50%"> 
+                        </div>
+                    </a>
+                    <div class="popup" id="popup-{{loop.index}}">
+                        <div class="popup-content">
+                            <span class="close-popup">&times;</span>
+                            <h2>{{problema.nome}}</h2>
+                            <img src="{{problema.imagem_url}}" alt="Imagem do problema">
+                            <p>Status: {{problema.status}}</p>
+                            <!-- Adicione mais informações do problema aqui -->
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+            <div class="bloco-historico">
+                <div class="bloco-dados">
+                    <div class="dados-denuncia">
+                        <p>Total de denúncias</p>
+                        <p><strong>5</strong></p>
+                        <div class="linha">
+                            <div><p>Atendidas</p>  <p>3</p></div>
+                            <div><p>Em andamento</p>  <p>2</p></div>
+                        </div>
+                    </div>
+                    <div class="dados-botoes">
+                        <div><button>Relatar mais um problema</button></div>
+                        <div><button>Ver o mapa de perto</button></div>
+                    </div>
+                </div>
+                <div class="bloco-mapa">
+                    <div id="map"></div>
+                    <!--<img src=".\img\mapa-aleatorio.png" alt="mapa">-->
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+
+    </footer>
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+</body>
+</html>

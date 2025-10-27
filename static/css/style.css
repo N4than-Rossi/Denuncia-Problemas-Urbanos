@@ -1,0 +1,202 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    min-height: 100vh;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color:#90D092;
+    height: 17vh;
+}
+
+main {
+    height: 100vh;
+    margin: 20px;
+}
+
+.main2 {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.bloco-historico {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    
+}
+
+.titulo-historico {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    gap:120px;
+    padding-left: 40px;
+    padding-top: 40px;
+}
+
+.titulo-historico button{
+    border-radius: 10px;
+    background-color: #7C78F5;
+    color: white;
+    font-size: 18px;
+    height: 50px;
+    width: 10%;
+    border: none;
+    cursor: pointer;
+}
+
+.img-hist{
+    border-radius: 15px;
+    width: 70px;
+}
+
+.denuncia-historico{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    background-color: #DBD7F9;
+    margin:20px;
+    margin-right: 40px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 21px;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+
+.denuncia-historico:hover{
+    background-color: #C4C0F5;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.35);
+    transform: scale(1.02);
+}
+
+#denuncia-hist-p{
+    margin-bottom: 10px;
+}
+
+/* ------metade direita:------*/
+.bloco-dados {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+
+    padding: 0px 30px;
+}
+
+.dados-denuncia {
+    background-color: #3A7CA5;
+    color: white;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin: 10px 40px;
+    width: 45%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.dados-denuncia p {
+    margin: 0px 0px;
+}
+
+.dados-botoes {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.dados-botoes button {
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #7C78F5;
+    color: white;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    margin: 15px 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.linha {
+    padding-left: 0px;
+    margin-top: 10px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    
+}
+
+.dados-botoes {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    
+
+}
+
+.dados-botoes div {
+    width: 85%;
+}
+
+#map {
+    height: 50vh;
+    display: flex;
+    flex: 1;
+}
+
+footer {
+    background-color:#90D092;
+    height: 3vh;
+}
+
+#lista-filtro {
+    /*display: none;*/
+    position: relative;
+    display: inline-block;
+    left: 310px;
+    top: -10px;
+    
+    /*width: 120px;*/
+    background-color: #3A7CA5;
+    color: white;
+    font-size: 18px;
+    border-radius: 0 0 10px 10px;
+}
+
+#lista-filtro ul {
+    padding: 10px;
+    margin: 0;
+    position: absolute;
+    list-style-type: none;
+}
