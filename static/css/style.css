@@ -13,8 +13,9 @@ header {
 }
 
 main {
-    height: 100vh;
     margin: 20px;
+    flex: 1;
+   box-sizing: border-box;
 }
 
 .main2 {
@@ -199,4 +200,26 @@ footer {
     margin: 0;
     position: absolute;
     list-style-type: none;
+}
+
+#address_alert {
+    color: red;
+    font-size: 12px;
+}
+
+.cpf-button{
+   width: 20px;
+    height: 20px;
+    background-color: white; /* ou qualquer cor */
+    border: 2px solid black;
+    border-radius: 4px; /* opcional */
+    padding: 0; /* remove o espaço interno padrão */
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;     
+}
+
+#cpf-alert {
+    color: red;
+    font-size: small;
 }
