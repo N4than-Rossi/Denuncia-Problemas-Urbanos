@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbamWeb</title> <!-- COLOCAR TÍTULO -->
+    <link rel="stylesheet" href="../static/css/cabecRodape.css">
+    <link rel="stylesheet" href="../static/css/pag-denuncia.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+      <!-- LINK PARA A PÁGINA INICIAL -->
+        <a href="index.html" class="logo-link">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="assets/images/UWicon.svg" alt="UWicon" height="60">
+                </div>
+                <span class="write-logo">UrbanWeb</span>
+            </div>
+        </a>
+        <div class="perfil-photo">
+            <nav>
+                <a href="perfil.html">
+                    <img src="assets/images/perfil.png" alt="perfil" height="60">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+      <div class="denuncia-container">
+        <h2 id="title-container">Relate um problema</h2>
+
+        <form id="form-denuncia" enctype="multipart/form-data" novalidate>
+
+            <div class="arquivos-localizacao">
+                
+                <div class="form-group">
+                    <label for="arquivo">Foto/Vídeo</label>
+                    <input id="arquivo" name="arquivo" type="file" accept="image/*,video/*" capture="environment" required>
+                </div>
+            
+                <div class="form-group">
+                    <label>Localização Atual</label>
+                    <button type="button" class="botao-localizacao" id="btnlocalizacao" >Permito que o navegador acesse minha localização</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="outra-localizacao">Outra Localização:</label>
+                    <textarea id="outra-localizacao" rows="1" name="outra-localizacao" placeholder="Digite o endereço completo"></textarea>
+                </div>
+
+            </div>
+
+            <div class="problemas">
+                <h3>Tipo de problema</h3>
+
+                <div class="problemas-urbanos">
+                    <div>
+                        <button type="button" class="button-urbano">Problema Urbano</button>
+                    </div>
+                    
+                    <div class="options-urbano">
+
+                        <input type="radio" id="lixo" name="tipo" value="Lixo/entulho" required>
+                        <label for="lixo">Lixo/entulho</label>
+                        
+                        <input type="radio" id="iluminacao" name="tipo" value="IluminaçãoUrbana">
+                        <label for="iluminacao">Iluminação</label>
+
+                        <input type="radio" id="agua" name="tipo" value="Água/esgoto">
+                        <label for="agua">Água/esgoto</label>
+
+                        <input type="radio" id="estradas" name="tipo" value="Estradas/buracos">
+                        <label for="estradas">Estradas/buracos</label>
+
+                        <input type="radio" id="terra" name="tipo" value="Terra">
+                        <label for="terra">Terra</label>
+
+                    </div>
+                </div>
+
+                <div class="problemas-escolar">
+                    <button type="button" class="button-escolar">Problema Escolar</button>
+
+                    <div class="options-escolar">
+
+                        <input type="radio" id="iluminacao-escolar" name="tipo" value="IluminaçãoEscolar" required>
+                        <label for="iluminacao-escolar">Iluminação</label>
+
+                        <input type="radio" id="agua-escolar" name="tipo" value="Água/EsgotoEscolar">
+                        <label for="agua-escolar">Água/esgoto</label>
+
+                        <input type="radio" id="infraestrutura" name="tipo" value="Infraestrutura">
+                        <label for="infraestrutura">Infraestrutura</label>
+
+                        <input type="radio" id="area-externa" name="tipo" value="ÁreaExterna">
+                        <label for="area-externa">Área Externa</label>
+
+                        <input type="radio" id="seguranca" name="tipo" value="Segurança">
+                        <label for="seguranca">Segurança</label>
+
+                    </div>  
+                </div>
+            </div>
+
+            <div class="quase-enviar">
+
+                <div class="description">
+                    <textarea id="descricao" placeholder="Descreva o seu problema aqui (seja específico)" required></textarea>
+                </div>
+
+
+                <div class="quase-envio">
+                    <label id="label-cpf" for="cpf">CPF:</label>
+                    <div class="envio">
+                        <div class="ultimos-dados">
+                            <input id="cpf" name="cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required/>
+                        </div>
+
+                        <div class="anomimo">
+                            <input type="checkbox" id="checkbox">
+                            <label id="label-check" for="checkbox">Denúncia anônima</label> 
+                        </div>
+                    </div>
+                        <div class="enviar">
+                            <button id="submit-denuncia" type="submit">ENVIAR DENÚNCIA</button>
+                        </div>
+                </div>
+            </div>
+            </div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 UrbanWeb &ndash; Urban Web</p>
+    </footer>
+
+    <script></script>
+</body>
+</html>
