@@ -1,0 +1,225 @@
+.denuncia-container{
+    width: 1370px;
+    border: 1px solid;
+    margin: 0 auto;
+    margin-top:26px;
+    margin-bottom: 36px;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.48);
+
+    position: relative;
+}
+
+#title-container{
+    margin-top: 22px;
+    margin-bottom: 42px;
+    text-align: center;
+    font-size: 36px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label{
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.arquivos-localizacao{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 45px;
+}
+
+input[type="file"]::file-selector-button{
+    background-color: #D9D9D9;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-localizacao{
+    width: 268px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-weight: bold;
+    background-color: #D9D9D9;
+    text-align: left;
+}
+
+#outra-localizacao{
+    width: 396px;
+    background-color: #D9D9D9;
+    resize: none;
+    border: none;
+    padding: 17px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.problemas h3{
+    font-size: 24px;
+    margin-bottom: 27px;
+}
+
+.problemas-urbanos{
+    display: flex;
+    margin-bottom: 14px;
+    align-items: center;
+}
+
+.button-urbano{
+    margin-right: 52px;
+    border: none;
+    cursor: pointer;
+    padding: 20px 100px;
+    border-radius: 11px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #BECCC3;
+}
+
+
+.options-urbano{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+.options-urbano label{
+    background-color: #BECCC3;
+}
+
+.problemas-escolar{
+    display: flex;
+    margin-bottom: 47px;
+    align-items: center;
+}
+
+.button-escolar{
+    margin-right: 52px;
+    border: none;
+    cursor: pointer;
+    padding: 20px 100px;
+    border-radius: 11px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #F6E05E;
+}
+
+.options-escolar{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.options-escolar label{
+    background-color: #F6E05E;
+}
+
+.quase-enviar{
+    display: flex;
+    gap: 60px;
+}
+
+#descricao{
+    width: 635px;
+    height: 235px;
+    resize: none;
+    background-color: #EAEAEA;
+    padding: 18px 21px;
+}
+
+.options-urbano label,
+.options-escolar label {
+    width: 152px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-weight: bold;
+    border-radius: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.envio{
+    display: flex;
+    align-items: center;
+}
+
+.quase-envio{
+    display: flex;
+    flex-direction: column;
+}
+
+.ultimos-dados input{
+    display: flex;
+    flex-direction: column;
+}
+
+#label-cpf{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0.35px;
+}
+
+#cpf{
+    width: 277px;
+    background-color: #D9D9D9;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 6px;
+    margin-right: 14px;
+}
+
+input[type="checkbox"] {
+  accent-color: gray;
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+}
+
+#label-check{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#submit-denuncia{
+    border: none;
+    background-color: #D9D9D9;
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 24px 31px;
+    border-radius: 30px;
+    margin-top: 59px;
+    cursor: pointer;
+}
+
+.enviar{
+    display: flex;
+    justify-content: center;
+}
