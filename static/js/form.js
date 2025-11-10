@@ -29,9 +29,26 @@ type_selected=type;
             label.style.boxShadow="0px 4px 8px 2px #00000040";
         }
 
-if(button_selected.value.includes("Outros")) text.style.display='block';
-else text.style.display='none';
-other_text.style.display='none';
+if (button_selected.value.includes("Outros")) {
+  
+    text.style.display = "block";
+    setTimeout(() => text.classList.add("show"), 10);
+} else {
+
+    text.classList.remove("show");
+    setTimeout(() => {
+        if (!text.classList.contains("show")) {
+            text.style.display = "none";
+        }
+    }, 10);
+}
+
+other_text.classList.remove("show");
+setTimeout(() => {
+    if (!other_text.classList.contains("show")) {
+        other_text.style.display = "none";
+    }
+}, 10);
 }
 
 function validateCpf(cpf){

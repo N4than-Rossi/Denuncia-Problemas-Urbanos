@@ -59,7 +59,10 @@
 
                         <input type="radio" id="Urban-Outros" name="tipo-urbano" value="Outros">
                         <label for="Urban-Outros">Outros</label>
-                        <input type="text" id="urban-specify" name="urban-specify" placeholder="Especifique" style="display: none;">
+
+                            <div class="specify-field-container">
+                                <input type="text" id="urban-specify" name="urban-specify" placeholder="Especifique" style="display: none;">
+                            </div>
 
                     </div>
                 </div>
@@ -83,7 +86,10 @@
 
                         <input type="radio" id="School-Outros" name="tipo-escolar" value="Outros">
                         <label for="School-Outros">Outros</label>
-                        <input type="text" id="school-specify" name="school-specify" placeholder="Especifique" style="display: none;">
+
+                        <div class="specify-field-container">
+                            <input type="text" id="school-specify" name="school-specify" placeholder="Especifique" style="display: none;">
+                        </div>
 
                     </div>  
                 </div>
@@ -101,7 +107,6 @@
                     <div class="envio">
                         <div class="ultimos-dados">
                             <input id="cpf" name="cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required/>
-                            <p id="cpf-alert" style="display: none; color:red;">CPF inválido. Por favor, verifique os números digitados</p>
                         </div>
 
                         <div class="anomimo">
@@ -109,6 +114,7 @@
                             <label id="label-check" for="checkbox">Denúncia anônima</label> 
                         </div>
                     </div>
+                        <p id="cpf-alert" style="display: none; color:red;">CPF inválido. Por favor, verifique os números digitados</p>
                         <div class="enviar">
                             <button id="submit-denuncia" type="submit">ENVIAR DENÚNCIA</button>
                         </div>

@@ -63,7 +63,7 @@ input[type="file"]::file-selector-button{
     resize: none;
     border: none;
     padding: 17px 20px;
-    cursor: pointer;
+    cursor: text;
     border-radius: 6px;
 
     white-space: nowrap;
@@ -76,29 +76,19 @@ input[type="file"]::file-selector-button{
     margin-bottom: 27px;
 }
 
-.problemas-urbanos{
-    display: flex;
-    margin-bottom: 14px;
-    align-items: center;
-}
 
 .button-urbano{
-    margin-right: 52px;
-    border: none;
-    cursor: pointer;
-    padding: 20px 100px;
-    border-radius: 11px;
-    font-size: 20px;
-    font-weight: bold;
     background-color: #BECCC3;
-    box-shadow: 0px 2px 4px 0px #00000040;
 }
 
 
-.options-urbano{
+.options-urbano,
+.options-escolar {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    flex: 1;
+    position: relative;
 }
 
 input[type="radio"]{
@@ -112,13 +102,20 @@ input[type="radio"]{
     box-shadow: 0px 2px 4px 0px #00000040;
 }
 
+.problemas-urbanos, 
 .problemas-escolar{
     display: flex;
-    margin-bottom: 47px;
-    align-items: center;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    position: relative;
 }
 
 .button-escolar{
+    background-color: #F6E05E;
+}
+
+.button-urbano,
+.button-escolar {
     margin-right: 52px;
     border: none;
     cursor: pointer;
@@ -126,14 +123,8 @@ input[type="radio"]{
     border-radius: 11px;
     font-size: 20px;
     font-weight: bold;
-    background-color: #F6E05E;
     box-shadow: 0px 2px 4px 0px #00000040;
-}
-
-.options-escolar{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    flex-shrink: 0;
 }
 
 .options-escolar label{
@@ -142,8 +133,6 @@ input[type="radio"]{
     background-color: #F6E05E;
     box-shadow: 0px 2px 4px 0px #00000040;
 }
-
-
 
 .quase-enviar{
     display: flex;
@@ -203,6 +192,12 @@ input[type="radio"]{
     margin-right: 14px;
 }
 
+#cpf-alert{
+    margin-top: 10px;
+    width: 250px;
+    color: red;
+}
+
 input[type="checkbox"] {
   accent-color: gray;
   width: 40px;
@@ -232,4 +227,36 @@ input[type="checkbox"] {
 .enviar{
     display: flex;
     justify-content: center;
+}
+
+#urban-specify,
+#school-specify {
+    font-size: 15px;
+    width: 100%;
+    max-width: 750px;
+    border: none;
+    border-radius: 6px;
+    background-color: #D9D9D9;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.5s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
+#urban-specify.show,
+#school-specify.show {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 120px;
+}
+
+.specify-field-container {
+    width: 100%;
+    margin-top: 10px;
+    order: 1;
 }
