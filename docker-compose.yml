@@ -1,0 +1,63 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: denuncias_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: denuncias_web
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - OLLAMA_URL=http://ollama:11434
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+    # Adicione healthcheck para web também
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  ollama-setup:
+    image: ollama/ollama:latest
+    container_name: denuncias_ollama_setup
+    depends_on:
+      ollama:
+        condition: service_healthy
+    volumes:
+      - ollama_data:/root/.ollama
+    command: >
+      sh -c "
+        echo 'Aguardando Ollama ficar totalmente pronto...'
+        sleep 10
+        echo 'Verificando modelos...'
+        ollama list || echo 'Ollama não respondeu'
+        if ! ollama list | grep -q 'llama3.2:3b'; then
+          echo '⬇️ Baixando modelo llama3.2:3b...'
+          ollama pull llama3.2:3b
+          echo '✅ Modelo baixado!'
+        else
+          echo '✅ Modelo já existe'
+        fi
+      "
+    restart: "no"
+
+volumes:
+  ollama_data:

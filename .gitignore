@@ -1,0 +1,94 @@
+# =================================
+# PYTHON
+# =================================
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+.python-version
+pip-delete-this-directory.txt
+
+# =================================
+# VIRTUAL ENVIRONMENTS
+# =================================
+venv/
+.venv/
+env/
+ENV/
+
+# =================================
+# SECRETS & CONFIG
+# =================================
+.env
+*.env
+.env.*
+config.json
+*.key
+*.pem
+*.crt
+*.secret
+secrets/
+credentials/
+
+# =================================
+# IDEs & EDITORS
+# =================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# =================================
+# SYSTEM
+# =================================
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+.cache/
+
+# =================================
+# DATABASES
+# =================================
+*.sqlite3
+*.db
+*.sqlite
+
+# =================================
+# LOGS
+# =================================
+*.log
+logs/
+
+# =================================
+# TESTS & COVERAGE
+# =================================
+.pytest_cache/
+.coverage
+htmlcov/
+.coverage.*
+.nox/
+
+# =================================
+# OLLAMA & AI MODELS
+# =================================
+# Mantém o código, mas ignora os dados grandes
+ollama_data/
+.ollama/
+models/
+*.bin
+*.gguf
+*.safetensors
+
+# =================================
+# DOCKER & CONTAINERS
+# =================================
+# Mantém os arquivos principais (Dockerfile, compose.yml)
+# e ignora apenas os temporários ou alternativos
+docker-compose.override.yml
+*.dockerignore

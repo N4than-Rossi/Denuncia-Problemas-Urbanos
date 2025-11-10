@@ -8,6 +8,8 @@ import os
 
 app = Flask(__name__)
 
+OLLAMA_URL=os.getenv("OLLAMA_URL", 'http://localhost:11434' )
+
 UPLOAD_FOLDER='static/assets/problem_images'
 app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER,exist_ok=True)
@@ -52,20 +54,37 @@ def send_report():
     filename=timestamp+filename
     file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
     img_url=url_for('static',filename='assets/problem_images/'+filename)
-
-    name=request.form.get("report-type")
+    
+    description=request.form.get("descricao")
+    url=f"{OLLAMA_URL}/api/generate"
+    data={
+        "model": "llama3.2:3b",
+        "prompt": (
+       "Com base na descrição abaixo gere um titulo direto e simples usando pouquissímas palavras, apenas um título que resuma tudo."
+       "NÃO explique, NÃO ESCREVA NADA ALÉM DO TÍTULO, quero que responda com o título e apenas ele, nem se quer um confirmação deve ser entregue na resposta."
+       "Retorne um título independente de qual for a descrição, se não consegui, pegue as primeira 3 palavras da descrição."
+       f"Descrição: {description}"
+        ),
+        "stream": False
+    }
+    try:
+        response=requests.post(url,json=data)
+        name=response.json()["response"].strip()
+        print("titulo gerado automaticamente:",name)
+    except requests.exceptions.RequestException as e:
+        print("erro ao conectar com Ollama:",e)
+        name=' '.join(description.split()[:3])
     adress=request.form.get("address")
     lat=request.form.get('latitude')
     lon=request.form.get('longitude')
-    type=request.form.get("type")
-    description=request.form.get("problem")
+    problem_type=request.form.get("type")
     cpf=request.form.get("cpf")
     new_report=[
         id,
         name,
         img_url,
         "Em andamento",
-        type,
+        problem_type,
         adress,
         lat,
         lon,
@@ -105,4 +124,4 @@ def nomination():
         return jsonify({'error': str(error)}),500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

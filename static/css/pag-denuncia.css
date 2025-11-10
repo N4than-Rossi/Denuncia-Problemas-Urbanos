@@ -57,7 +57,7 @@ input[type="file"]::file-selector-button{
     text-align: left;
 }
 
-#outra-localizacao{
+#address{
     width: 396px;
     background-color: #D9D9D9;
     resize: none;
@@ -91,6 +91,7 @@ input[type="file"]::file-selector-button{
     font-size: 20px;
     font-weight: bold;
     background-color: #BECCC3;
+    box-shadow: 0px 2px 4px 0px #00000040;
 }
 
 
@@ -105,7 +106,10 @@ input[type="radio"]{
 }
 
 .options-urbano label{
+    font-size: 70%;
+    padding: 8px;
     background-color: #BECCC3;
+    box-shadow: 0px 2px 4px 0px #00000040;
 }
 
 .problemas-escolar{
@@ -123,6 +127,7 @@ input[type="radio"]{
     font-size: 20px;
     font-weight: bold;
     background-color: #F6E05E;
+    box-shadow: 0px 2px 4px 0px #00000040;
 }
 
 .options-escolar{
@@ -132,8 +137,13 @@ input[type="radio"]{
 }
 
 .options-escolar label{
+    font-size: 70%;
+    padding: 8px;
     background-color: #F6E05E;
+    box-shadow: 0px 2px 4px 0px #00000040;
 }
+
+
 
 .quase-enviar{
     display: flex;

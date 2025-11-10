@@ -3,20 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{%block title%}{%endblock%}</title>
+    <title>{%block title%}Urbanweb{%endblock%}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/cabecRodape.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/pop.css')}}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+  
     <script src="{{url_for('static', filename='js/app.js')}}" defer></script>
       {%block head_extra%}
       {%endblock%}
 </head>
 <body>
-    <header><!--código do header--></header>
+    <header>
+        <!--link para página inicial-->
+        <a href="{{url_for('index')}}" class="logo-link">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="{{url_for('static', filename='assets/images/UWicon.svg')}}" alt="UWicon" height="60">
+                </div>
+                <span class="write-logo">UrbanWeb</span>
+            </div>
+        </a>
+        <div class="perfil-photo">
+            <nav>
+                <a href="perfil.html"><!--O nome da função no app.py que mostra o perfil.html no lugar de "perfil.html"-->
+                    <img src="{{url_for('static',filename='assets/images/perfil.png')}}" alt="perfil" height="60">
+                </a>
+            </nav>
+        </div>
+    </header>
     <main>
         {%block content%}
         {%endblock%}
     <footer>
-    <p>&copy; Todos os direitos reservados</p>
+    <p> <p>&copy; 2025 UrbanWeb &ndash; Urban Web</p></p>
     </footer>
 </body>
 </html>

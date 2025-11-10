@@ -3,14 +3,35 @@ let type_selected;
 
 function typeButtonAction(button,text,other_text, type){
     //função que ocorre quando um dos botões de tipo é clicado
-    if(button_selected)
-button_selected.style.color=''; //estilo do botão normal
+    const label=document.querySelector(`label[for='${button.id}']`);
+    if(button_selected){
+        const prevlabel=document.querySelector(`label[for='${button_selected.id}']`);
+        //muda para o estilo padrão
+        if(prevlabel){
+        if(type_selected==="Urbano"){
+            prevlabel.style.backgroundColor="#BECCC3";
+            prevlabel.style.boxShadow="0px 2px 4px 0px #00000040";
+        }else{
+            prevlabel.style.backgroundColor="#F6E05E";
+            prevlabel.style.boxShadow="0px 2px 4px 0px #00000040";
+        }
+    }
+}
 button_selected=button;
-button_selected.style.color='red'; //estilo do botão selecionado
-if(button_selected.textContent==='Outros') text.style.display='block';
+type_selected=type;
+
+//muda para o estilo selecionado 
+          if(type_selected==="Urbano"){
+            label.style.backgroundColor="#9CB0A5";
+            label.style.boxShadow="0px 4px 8px 2px #00000040";
+        }else{
+            label.style.backgroundColor="#D9C53C";
+            label.style.boxShadow="0px 4px 8px 2px #00000040";
+        }
+
+if(button_selected.value.includes("Outros")) text.style.display='block';
 else text.style.display='none';
 other_text.style.display='none';
-type_selected=type;
 }
 
 function validateCpf(cpf){
@@ -182,8 +203,8 @@ address.addEventListener('blur',()=>{
 });
 
 //Verificação de tipo do problema
-const urban_buttons=document.querySelectorAll('.urban-type-button');
-const school_buttons=document.querySelectorAll('.school-type-button');
+const urban_buttons=document.querySelectorAll('input[name="tipo-urbano"]');
+const school_buttons=document.querySelectorAll('input[name="tipo-escolar"]');
 const urban_specify=document.getElementById('urban-specify');
 const school_specify=document.getElementById('school-specify');
 for(let button of urban_buttons)
@@ -191,7 +212,6 @@ for(let button of urban_buttons)
 for(let button of school_buttons)
     button.addEventListener('click', ()=>typeButtonAction(button, school_specify, urban_specify, "Escolar"));
 
-const reportType=document.getElementById('report-type');
 
 
 const cpf=document.getElementById('cpf');
@@ -219,13 +239,13 @@ if(value.length && (value.length!==14 || !validateCpf(value)))
     cpfAlert.style.display='block';
 });
 
-const cpfButton=document.querySelector('.cpf-button');
+const cpfButton=document.getElementById('checkbox');
 let isAnonymous=false;
 cpfButton.addEventListener('click',()=>{
     if(isAnonymous){
         //estilo normal (botão e campo de inserir cpf)
-        cpfButton.style.backgroundColor='white';
-        cpf.style.backgroundColor='white';
+        cpf.style.backgroundColor='#D9D9D9';
+        cpf.style.color='black';
         isAnonymous=false;
         cpf.disabled=false;
         if(cpf.value.length>0 && (cpf.value.length!==14 || !validateCpf(cpf.value)))
@@ -233,8 +253,8 @@ cpfButton.addEventListener('click',()=>{
     }
     else{
         //estilo quando está selecionado (botão e campo de inserir cpf)
-     cpfButton.style.backgroundColor='green';
-     cpf.style.backgroundColor='#f7f7f7';
+     cpf.style.backgroundColor='#f5f5f5';
+     cpf.style.color='#999'
      isAnonymous=true;
      cpf.disabled=true;
      cpfAlert.style.display='none';
@@ -242,35 +262,44 @@ cpfButton.addEventListener('click',()=>{
 });
 
 //submissão do form
-const type=document.getElementById("type");
-form.addEventListener('submit', (event)=>{
+const  submitButton=document.getElementById("submit-denuncia");
+const reportType=document.getElementById('type');
+form.addEventListener('submit', async (event)=>{
+    submitButton.textContent="Enviando...";
+    submitButton.disabled=true;
     if(!address.value && !using_actual_location){
         event.preventDefault();
+        submitButton.textContent="ENVIAR DENÚNCIA";
+        submitButton.disabled=true;
         addressAlert.style.display='block';
         return;
     }
-   convertCoordinates();
+  await convertCoordinates();
+  if(!type_selected)
+        reportType.value="Urbano"+":  ";
+    else 
+        reportType.value=type_selected+":  "
     if(!button_selected)
-        reportType.value='Outros';
-    else if(button_selected.textContent==="Outros"){
+        reportType.value+='Outros';
+    else if(button_selected.value==="Outros"){
         if(button_selected===urban_buttons[urban_buttons.length-1] && urban_specify.value.length)
-            reportType.value=urban_specify.value;
+            reportType.value+=urban_specify.value;
         else if(button_selected===school_buttons[school_buttons.length-1] && school_specify.value.length)
-            reportType.value=school_specify.value;
+            reportType.value+=school_specify.value;
         else
-            reportType.value="Outros";
+            reportType.value+="Outros";
     }
     else 
-        reportType.value=button_selected.textContent;
-    if(!type_selected)
-        type.value="Urbano";
-    else 
-        type.value=type_selected;
+        reportType.value+=button_selected.value;
         
-    if(isAnonymous || !cpf.value.length) 
+    if(isAnonymous || !cpf.value.length){ 
+        cpf.disabled=false;
         cpf.value="anonymous";  
+    }
     else if(cpf.value.length<14 || !validateCpf(cpf.value)){
         event.preventDefault();
+        submitButton.textContent="ENVIAR DENÚNCIA";
+        submitButton.disabled=true;
         cpfAlert.style.display='block';
     }
 }
