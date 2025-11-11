@@ -1,6 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-// inicializando o mapa
-        var map = L.map('map').setView([39.61, -105.02], 10);
+const parseCSVLine=(line)=>{
+    let result=[];
+    let current='';
+    let quote=false;
+
+    for(const c of line){
+        if(c==='"'){
+            quote=!quote;
+        }else if(c===',' && !quote){
+            result.push(current);
+            current='';
+        }else{
+            current+=c;
+        }
+    }
+    result.push(current);
+    return result;
+}
+
+    // inicializando o mapa
+        var map = L.map('map').setView([-23.5475, -46.6367], 14);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -19,6 +38,51 @@ document.addEventListener('DOMContentLoaded', function() {
         "Cities": cities
     };
     var layerControl = L.control.layers(null,overlayMaps).addTo(map);
+
+    fetch('./static/problemas.csv')
+    .then(response=> response.text())
+    .then(csv=>{
+    const lines=csv.trim().split('\n');
+    const header=parseCSVLine(lines[0]);
+    const idNumber=header.indexOf('id'), latitude=header.indexOf('latitude'),longitude=header.indexOf('longitude'), nomeIdx=header.indexOf('nome');
+
+    lines.slice(1).forEach(line=>{
+       const parts=parseCSVLine(line);
+       const lat=parseFloat(parts[latitude]);
+       const lon=parseFloat(parts[longitude]);
+       const id=parseInt(parts[idNumber]);
+       const nome=parts[nomeIdx];
+       if(isNaN(lat) || isNaN(lon)) return;
+
+       const marker=L.marker([lat,lon]).addTo(map);
+
+       marker.on('click',()=>{
+     const popup=document.getElementById(`popup-${id}`);
+     if(popup){
+        popup.classList.add('active');
+     }
+       });
+       marker.bindTooltip(nome,{
+        permanent: false,
+        direction: 'top',
+        interactive: false
+       });
+
+       let tooltipTimeout;
+
+       marker.on('mouseover',()=>{
+        tooltipTimeout=setTimeout(()=>{
+        marker.openTooltip();
+        },1000);
+       });
+
+       marker.on('mouseout',()=>{
+        clearTimeout(tooltipTimeout);
+        marker.closeTooltip();
+       });
+    });
+    })
+    .catch(error=>console.log("erro ao carregar csv:",error)); 
 
     // Pop-up functionality
     // Get all denuncia elements

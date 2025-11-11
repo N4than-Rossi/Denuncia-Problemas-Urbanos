@@ -24,7 +24,7 @@ def allowed_file(filename):
 @app.get("/")
 def index():
     problemas = []
-    with open('problemas.csv', mode='r', encoding='utf-8') as csv_file:
+    with open('static/problemas.csv', mode='r', encoding='utf-8') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             problemas.append(row)
@@ -37,7 +37,7 @@ def show_report_page():
 @app.post("/send")
 def send_report():
     id=1
-    with open('problemas.csv',mode='r',encoding='utf-8') as file:
+    with open('static/problemas.csv',mode='r',encoding='utf-8') as file:
         reader=list(csv.reader(file))
         if len(reader)>1:
             last_row=reader[-1]
@@ -62,7 +62,8 @@ def send_report():
         "prompt": (
        "Com base na descrição abaixo gere um titulo direto e simples usando pouquissímas palavras, apenas um título que resuma tudo."
        "NÃO explique, NÃO ESCREVA NADA ALÉM DO TÍTULO, quero que responda com o título e apenas ele, nem se quer um confirmação deve ser entregue na resposta."
-       "Retorne um título independente de qual for a descrição, se não consegui, pegue as primeira 3 palavras da descrição."
+       "Retorne um título independente de qual for a descrição, se não conseguir, pegue as primeira 3 palavras da descrição."
+       "Não utilize pontuação como ponto final."
        f"Descrição: {description}"
         ),
         "stream": False
@@ -91,7 +92,7 @@ def send_report():
         description,
         cpf
     ]
-    with open("problemas.csv", mode='a',encoding='utf-8',newline="") as problems:
+    with open("static/problemas.csv", mode='a',encoding='utf-8',newline="") as problems:
         writer=csv.writer(problems)
         writer.writerow(new_report)
     return redirect(url_for('index'))
