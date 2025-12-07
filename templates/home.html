@@ -1,0 +1,227 @@
+{% extends "layout.html" %}
+
+{%block title%}UrbamWeb - Home{%endblock%}
+
+{%block head_extra%}
+<script src="{{url_for('static', filename='js/home.js')}}" defer></script>
+<link rel="stylesheet" href="{{url_for('static',filename='css/home.css')}}">
+{%endblock%}
+
+{%block page_navbar%}
+        <nav class="navbar">
+            <ul class="navegation">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#comofunciona">Como Funciona</a></li>
+                <li><a href="#para-prefeituras">Para Prefeituras</a></li>
+                <li><a href="#faq">Ajuda</a></li>
+            </ul>
+        </nav>
+{%endblock%}
+
+{%block content%}
+        <div class="main-content">
+            <section id="inicio" class="hero-section">
+
+                <div class="hero">
+                    <div class="inf">
+                        <h2>Por cidades cada vez mais
+                            <div class="txt-animado">
+                                <span></span>
+                            </div>
+                        </h2>
+
+                        <p>Denuncie problemas urbanos e acompanhe a solução em tempo real.</p>
+
+                        <button class="button-den">Fazer uma denúncia</button>
+                    </div>
+
+                    <div class="imagens-container">
+                        <div class="slides">
+                            <img src="{{url_for('static', filename='assets/images/city1.jpeg)}}" alt="Cidade 1">
+                            <img src="{{url_for('static', filename='assets/images/city2.webp)}}" alt="Cidade 2">
+                            <img src="{{url_for('static', filename='assets/images/city3.jpeg)}}" alt="Cidade 3">
+                            <img src="{{url_for('static', filename='assets/images/city4.jpeg)}}" alt="Cidade 4">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <p id="scroll-icon">⮟</p>
+            
+            <section id="comoFunciona" class="como-funciona">
+                <div class="container-passo">
+                    <div class="title-secao">
+                        <h2>Como Funciona</h2>
+                        <p>Em 4 passos simples, sua denúncia vira solução</p>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="passo ativo">
+                            <div class="numero">1</div>
+                            <span class="icon">📱</span>
+                            <h3>Registre o Problema</h3>
+                            <p>Tire uma foto ou vídeo do problema e descreva-o</p>
+                        </div>
+
+                        <div class="passo">
+                            <div class="numero">2</div>
+                            <span class="icon">🗺️</span>
+                            <h3>Informe a Localização</h3>
+                            <p>GPS automático ou descreva o endereço</p>
+                        </div>
+
+                        <div class="passo">
+                            <div class="numero">3</div>
+                            <span class="icon">📨</span>
+                            <h3>Envie para a Prefeitura</h3>
+                            <p>Sua denúncia vai direto para o setor responsável</p>
+                        </div>
+
+                        <div class="passo">
+                            <div class="numero">4</div>
+                            <span class="icon">🔍</span>
+                            <h3>Acompanhe o Status</h3>
+                            <p>Receba atualizações e veja quando for resolvido</p>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <button class="button-func">Fazer uma Denúnca Agora</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cidadaos">
+                <h2>Benefícios Para o Cidadão</h2>
+                <div class="cards-container">
+                    <div class="card-cidadao">
+                        <p class="title-card">Facilidade</p>
+                        <img src="{{url_for('static', filename='assets/images/Facilidade.png)}}" alt="Ícone Facilidade" class="icon-cidadao">
+                        <p class="title-cidadao">Simples e Rápido</p>
+                        <p class="descri-cidadao">Denuncie problemas urbanos em poucos cliques. Interface intuitiva para qualquer pessoa usar de forma fácil.</p>
+                    </div>
+                    <div class="card-cidadao">
+                        <p class="title-card">Transparência</p>
+                        <img src="{{url_for('static', filename='assets/images/Transparencia.png)}}" alt="Ícone Transparência" class="icon-cidadao">
+                        <p class="title-cidadao">Acompanhamento Completo</p>
+                        <p class="descri-cidadao">Saiba exatamente em que estágio está sua denúncia e receba atualizações sobre o progresso da solução.</p>
+                    </div>
+                    <div class="card-cidadao">
+                        <p class="title-card">Comunidade</p>
+                        <img src="{{url_for('static', filename='assets/images/Comunidade.png)}}" alt="Ícone Comunidade" class="icon-cidadao">
+                        <p class="title-cidadao">Voz Coletiva</p>
+                        <p class="descri-cidadao">Junte-se a outros moradores para identificar e resolver os problemas do seu bairro. Juntos temos mais força.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="para-prefeituras" class="prefeitura">
+                <h2>Benefícios Para a Prefeitura</h2>
+
+                <div class="grid-beneficios">
+                    <div class="quadrante">
+                        <span class="icon-quadrante">📋</span>
+                        <h3>Organização por Categorias</h3>
+                        <p>Todas as denúncias são automaticamente classificadas por tipo (lixo/entulho, iluminação, água/esgoto, etc.) e organizadas geograficamente em um mapa interativo.</p>
+                    </div>
+
+                    <div class="quadrante">
+                        <span class="icon-quadrante">🤖</span>
+                        <h3>Distribuição Automática para Setores</h3>
+                        <p>O sistema encaminha inteligentemente cada demanda para a secretaria responsável, eliminando retrabalho e garantindo que cada problema chegue ao setor correto desde o primeiro momento.</p>
+                    </div> 
+                    
+                    <div class="quadrante">
+                        <span class="icon-quadrante">⚡</span>
+                        <h3>Redução Significativa de Burocracia</h3>
+                        <p>Diminua o tempo de processamento das demandas, com formulários simplificados, comunicação direta e eliminação de etapas desnecessárias no fluxo de atendimento.</p>
+                    </div>
+
+                    <div class="quadrante">
+                        <span class="icon-quadrante">👁️</span>
+                        <h3>Transparência na Gestão Pública</h3>
+                        <p>Mantenha os cidadãos informados sobre o status de suas demandas, mostre resultados concretos e fortaleça a confiança na administração municipal.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq" class="faq">
+                <div class="title-secao">
+                    <h2>Perguntas Frequentes</h2>
+                    <p>Encontre respostas para as dúvidas mais comuns</p>
+                </div>
+
+                <div class="faq-lista">
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <h3>Preciso me cadastrar para fazer uma denúncia?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="resposta">
+                            <p>Não, você pode fazer denúncias sem cadastro. Mas com cadastro você pode acompanhar o status das suas denúncias e receber atualizações.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <h3>Minha denúncia é realmente anônima?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="resposta">
+                            <p>Sim! Ao fazer a denúncia, você pode marcar a opção 'Denúncia Anônima'. Nesse caso, sua identificação não será compartilhada com a prefeitura.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <h3>Como sei que minha denúncia foi encaminhada?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="resposta">
+                            <p>Você recebe imediatamente um número de protocolo. Com ele, pode acompanhar o status no site.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <h3>Quanto tempo leva para a prefeitura responder?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="resposta">
+                            <p>O tempo varia conforme o tipo de problema e a capacidade da prefeitura. Algumas respondem em horas, outras podem levar dias úteis.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <h3>Quais tipos de problemas posso denunciar?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="resposta">
+                            <p>Problemas escolares (segurança, infraestrutura e etc) e urbanos como buracos nas ruas, falta de iluminação, acúmulo de lixo, esgoto, entre outros.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <h3>Preciso de internet para fazer a denúncia?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="resposta">
+                            <p>Sim, é necessário conexão com internet para enviar a denúncia. Mas você pode tirar as fotos antes e enviar depois.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <h3>O site é gratuito para cidadãos?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="resposta">
+                            <p>Sim, totalmente gratuito! Não cobramos nada para cidadãos fazerem denúncias.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+{%endblock%}
