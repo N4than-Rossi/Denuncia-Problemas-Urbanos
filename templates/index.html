@@ -40,7 +40,11 @@
                         </div>
                         <div>
                             <p id="denuncia-hist-p">Status</p>
-                            <img src="{{url_for('static', filename='assets/images/icone-errado.png')}}" width="50%"> 
+                            {%if problema.status=="Em andamento"%}
+                            <img src="{{url_for('static', filename='assets/images/icone-errado.svg')}}" width="50%"> 
+                            {%else%}
+                            <img src="{{url_for('static', filename='assets/images/icone-correto.svg')}}" width="50%"> 
+                            {%endif%}
                         </div>
                     </a>
                     <div class="popup" id="popup-{{loop.index}}">
@@ -60,10 +64,10 @@
                 <div class="bloco-dados">
                     <div class="dados-denuncia">
                         <p>Total de denúncias</p>
-                        <p><strong>5</strong></p>
+                        <p><strong>{{problemas | length}}</strong></p>
                         <div class="linha">
-                            <div><p>Atendidas</p>  <p>3</p></div>
-                            <div><p>Em andamento</p>  <p>2</p></div>
+                            <div><p>Atendidas</p>  <p>{{solved}}</p></div>
+                            <div><p>Em andamento</p>  <p>{{unesolved}}</p></div>
                         </div>
                     </div>
                     <div class="dados-botoes">

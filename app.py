@@ -24,11 +24,21 @@ def allowed_file(filename):
 @app.get("/")
 def index():
     problemas = []
+    atendidas=0
+    problemas_nao_atentidos = []
     with open('static/problemas.csv', mode='r', encoding='utf-8') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
-            problemas.append(row)
-    return render_template("index.html", problemas=problemas)
+            if row['status']!="Em andamento":
+                atendidas+=1
+                problemas_nao_atentidos.append(row)
+            else:
+                problemas.append(row)
+    problemas=sorted(problemas, key=lambda x: x['nome'])
+    problemas_nao_atentidos=sorted(problemas_nao_atentidos, key=lambda x: x['nome'])
+    for problem in problemas_nao_atentidos:
+        problemas.append(problem)
+    return render_template("index.html", problemas=problemas, solved=atendidas, unesolved=len(problemas)-atendidas)
 
 @app.get("/send")
 def show_report_page():
@@ -61,19 +71,28 @@ def send_report():
         "model": "llama3.2:3b",
         "prompt": (
        "Com base na descrição abaixo gere um titulo direto e simples usando pouquissímas palavras, apenas um título que resuma tudo."
-       "NÃO explique, NÃO ESCREVA NADA ALÉM DO TÍTULO, quero que responda com o título e apenas ele, nem se quer um confirmação deve ser entregue na resposta."
+       "NÃO EXPLIQUE, NÃO COMENTE, NÃO ESCREVA NADA ALÉM DO TÍTULO, quero que responda com o título e apenas ele, nem se quer um confirmação deve ser entregue na resposta."
        "Retorne um título independente de qual for a descrição, se não conseguir, pegue as primeira 3 palavras da descrição."
-       "Não utilize pontuação como ponto final."
+       "Não utilize pontuação como                                                                                                                                                                                                                                                                  ponto final."
        f"Descrição: {description}"
         ),
         "stream": False
     }
     try:
         response=requests.post(url,json=data)
-        name=response.json()["response"].strip()
-        print("titulo gerado automaticamente:",name)
+        response.raise_for_status()
+        response_data=response.json()
+        if "response" in response_data:
+            name=response.json()["response"].strip()
+            print("titulo gerado automaticamente:",name)
+        else:
+            print("Resposta inesperada do ollama:",response_data)
+            name=' '.join(description.split()[:3])
     except requests.exceptions.RequestException as e:
         print("erro ao conectar com Ollama:",e)
+        name=' '.join(description.split()[:3])
+    except (KeyError,ValueError) as e:
+        print("erro ao processar resposta do Ollama:",e)
         name=' '.join(description.split()[:3])
     adress=request.form.get("address")
     lat=request.form.get('latitude')
@@ -109,8 +128,8 @@ def nomination():
             url,
             params={
                 'q':address,
-                'format':'json',
-                'limit': 1,
+                'mat':'json',
+                'limifort': 1,
                 'countrycodes':'br'
             },
             headers={

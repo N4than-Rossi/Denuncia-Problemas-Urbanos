@@ -7,12 +7,13 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     restart: unless-stopped
+    # Healthcheck usando comando nativo do ollama ao invés de curl
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 30s
+      test: ["CMD-SHELL", "ollama list > /dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 90s  # Aumentado significativamente
 
   web:
     build: 
@@ -28,12 +29,12 @@ services:
       ollama:
         condition: service_healthy
     restart: unless-stopped
-    # Adicione healthcheck para web também
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/"]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 30s
 
   ollama-setup:
     image: ollama/ollama:latest
@@ -41,21 +42,22 @@ services:
     depends_on:
       ollama:
         condition: service_healthy
-    volumes:
-      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=ollama:11434  # Corrigido para apontar ao serviço
     command: >
       sh -c "
-        echo 'Aguardando Ollama ficar totalmente pronto...'
-        sleep 10
-        echo 'Verificando modelos...'
-        ollama list || echo 'Ollama não respondeu'
+        echo '🔄 Aguardando Ollama ficar totalmente pronto...'
+        sleep 20
+        echo '📋 Verificando modelos disponíveis...'
+        ollama list || echo '⚠️  Ollama não respondeu'
         if ! ollama list | grep -q 'llama3.2:3b'; then
-          echo '⬇️ Baixando modelo llama3.2:3b...'
-          ollama pull llama3.2:3b
-          echo '✅ Modelo baixado!'
+          echo '⬇️  Baixando modelo llama3.2:3b (isso pode demorar)...'
+          OLLAMA_HOST=http://ollama:11434 ollama pull llama3.2:3b
+          echo '✅ Modelo baixado com sucesso!'
         else
-          echo '✅ Modelo já existe'
+          echo '✅ Modelo llama3.2:3b já existe'
         fi
+        echo '🎉 Setup concluído!'
       "
     restart: "no"
 
