@@ -20,8 +20,18 @@ def allowed_file(filename):
         return False
     return mime_type.startswith(('image/','video/'))
 
+@app.context_processor
+def inject_defaults():
+    return{
+        'show_sobre_nos': True
+    }
 
 @app.get("/")
+def show_home(): 
+    return render_template('home.html', show_sobre_nos=False)
+
+
+@app.get("/index")
 def index():
     problemas = []
     atendidas=0
@@ -68,12 +78,12 @@ def send_report():
     description=request.form.get("descricao")
     url=f"{OLLAMA_URL}/api/generate"
     data={
-        "model": "llama3.2:3b",
+        "model": "llama3.2:1b",
         "prompt": (
-       "Com base na descrição abaixo gere um titulo direto e simples usando pouquissímas palavras, apenas um título que resuma tudo."
+       "Com base na descrição abaixo gere um titulo direto e simples usando um máximo de 5 palavaras, apenas um título que resuma tudo e seja curto."
        "NÃO EXPLIQUE, NÃO COMENTE, NÃO ESCREVA NADA ALÉM DO TÍTULO, quero que responda com o título e apenas ele, nem se quer um confirmação deve ser entregue na resposta."
-       "Retorne um título independente de qual for a descrição, se não conseguir, pegue as primeira 3 palavras da descrição."
-       "Não utilize pontuação como                                                                                                                                                                                                                                                                  ponto final."
+       "Retorne um título independente de qual for a descrição."
+       "Não utilize pontuação como ponto final."
        f"Descrição: {description}"
         ),
         "stream": False
@@ -121,15 +131,15 @@ def nomination():
     address=request.args.get('address')
 
     if not address:
-        return jsonify({'error:': "Endereço não fornecido"}), 400
+        return jsonify({'error': "Endereço não fornecido"}), 400
     try:
         url="https://nominatim.openstreetmap.org/search"
         response=requests.get(
             url,
             params={
                 'q':address,
-                'mat':'json',
-                'limifort': 1,
+                'format':'json',
+                'limit': 1,
                 'countrycodes':'br'
             },
             headers={
@@ -142,6 +152,27 @@ def nomination():
         return jsonify(response.json())
     except requests.RequestException as error:
         return jsonify({'error': str(error)}),500
+
+@app.get("/acesso")
+def show_acess():
+    return render_template('acesso.html')
+
+@app.get("/login-cidadao")
+def show_login_citizen():
+    return render_template('login_cidadao.html')
+
+@app.post("/login-cidadao")
+def process_login_citizen():
+    return redirect(url_for('index'))
+
+@app.get("/login-prefeitura")
+def show_login_city_hall():
+    return render_template('login_prefeitura.html')
+
+@app.post("/login-prefeitura")
+def process_login_city_hall():
+    return redirect(url_for('index'))
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

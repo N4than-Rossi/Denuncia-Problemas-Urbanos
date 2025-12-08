@@ -1,0 +1,41 @@
+{%extends "layout.html"%}
+
+   {%block title%}Urban Web - Acesso{%endblock%}
+
+   {% block head_extra %} 
+   <script src="{{url_for('static', filename='js/login.js')}}" defer></script>
+   <link rel="stylesheet" href="{{url_for('static', filename='css/acesso.css')}}">
+    {% endblock %}
+
+{% block content %}
+        <h2 class="titulo1">Bem-vindo à UrbanWeb!</h2>
+        <h2 class="titulo2">Você é da prefeitura ou cidadão?</h2>
+
+        <div class="acess-container">
+
+            <div class="prefeitura-card">
+                <img src="{{url_for('static',filename='assets/images/prefeituraIcon.svg')}}" alt="Prefeitura Icon" height = "142">
+                <h3>PREFEITURA</h3>
+                
+                <a href="{{url_for('show_login_city_hall')}}">
+                    <button class="prefeitura-button" aria-label="Acessar prefeitura">ENTRAR COMO PREFEITURA</button>
+                </a>
+
+
+
+            </div>
+
+            <div class="cidadao-card">
+                <img src="{{url_for('static',filename='assets/images/cidadaoIcon.svg')}}" alt="Cidadão Icon" height = "142">
+                <h3>CIDADÃO</h3>
+                
+                <a href="{{url_for('show_login_citizen')}}">
+                    <button class="cidadao-button" aria-label="Acessar cidadao">ENTRAR COMO CIDADÃO</button>
+                </a>
+
+
+
+            </div>
+        </div>
+
+{% endblock %}

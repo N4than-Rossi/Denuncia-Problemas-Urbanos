@@ -1,0 +1,40 @@
+{%extends "layout.html"%}
+   
+   {% block title %} Urban Web - Login {% endblock %} 
+
+   {% block head_extra %}
+      <script src="{{url_for('static', filename='js/login.js')}}" defer></script>
+   <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}"> 
+   {% endblock %} 
+
+{% block content %} 
+
+        <div class="form-page-login-container">
+            <h2>Login da Prefeitura</h2>
+            <div class="form-container">
+             <form id="login-city-hall-form" action="{{url_for('process_login_city_hall')}}" method="POST" enctype="multipart/form-data">
+                <div class="form-login-grupo">
+                    <label for="prefeitura-info">E-mail institucional</label>
+                    <input type="text" placeholder="nome@prefeitura.gov.br">
+                </div>
+
+                <div class="form-login-grupo">
+                    <label for="prefeitura-info">Senha</label>
+                    <input type="password" placeholder="Digite sua senha">
+                </div>
+                <div class="form-login-grupo">
+                    <label for="prefeitura-info">Código 2FA</label>
+                    <input type="text" inputmode="numeric" pattern="0-9" placeholder="Código de autenticador ou SMS">
+                </div>
+
+                <button id="submit-login-prefeitura" type="submit" class="btn-login">Entrar</button>
+                <div class="forgot">
+                    <a href="">Esqueci minha senha</a>
+                </div>
+            </form>
+
+
+        </div>
+        </div>
+
+{% endblock %}

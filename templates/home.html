@@ -32,15 +32,15 @@
 
                         <p>Denuncie problemas urbanos e acompanhe a solução em tempo real.</p>
 
-                        <button class="button-den">Fazer uma denúncia</button>
+                      <a href="{{url_for('show_report_page')}}"><button class="button-den">Fazer uma denúncia</button></a> 
                     </div>
 
                     <div class="imagens-container">
                         <div class="slides">
-                            <img src="{{url_for('static', filename='assets/images/city1.jpeg)}}" alt="Cidade 1">
-                            <img src="{{url_for('static', filename='assets/images/city2.webp)}}" alt="Cidade 2">
-                            <img src="{{url_for('static', filename='assets/images/city3.jpeg)}}" alt="Cidade 3">
-                            <img src="{{url_for('static', filename='assets/images/city4.jpeg)}}" alt="Cidade 4">
+                            <img src="{{url_for('static', filename='assets/images/city1.jpeg')}}" alt="Cidade 1">
+                            <img src="{{url_for('static', filename='assets/images/city2.webp')}}" alt="Cidade 2">
+                            <img src="{{url_for('static', filename='assets/images/city3.jpeg')}}" alt="Cidade 3">
+                            <img src="{{url_for('static', filename='assets/images/city4.jpeg')}}" alt="Cidade 4">
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="button-container">
-                        <button class="button-func">Fazer uma Denúnca Agora</button>
+                      <a href="{{url_for('show_report_page')}}"> <button class="button-func">Fazer uma Denúnca Agora</button></a>
                     </div>
                 </div>
             </section>
@@ -96,19 +96,19 @@
                 <div class="cards-container">
                     <div class="card-cidadao">
                         <p class="title-card">Facilidade</p>
-                        <img src="{{url_for('static', filename='assets/images/Facilidade.png)}}" alt="Ícone Facilidade" class="icon-cidadao">
+                        <img src="{{url_for('static', filename='assets/images/Facilidade.png')}}" alt="Ícone Facilidade" class="icon-cidadao">
                         <p class="title-cidadao">Simples e Rápido</p>
                         <p class="descri-cidadao">Denuncie problemas urbanos em poucos cliques. Interface intuitiva para qualquer pessoa usar de forma fácil.</p>
                     </div>
                     <div class="card-cidadao">
                         <p class="title-card">Transparência</p>
-                        <img src="{{url_for('static', filename='assets/images/Transparencia.png)}}" alt="Ícone Transparência" class="icon-cidadao">
+                        <img src="{{url_for('static', filename='assets/images/Transparencia.png')}}" alt="Ícone Transparência" class="icon-cidadao">
                         <p class="title-cidadao">Acompanhamento Completo</p>
                         <p class="descri-cidadao">Saiba exatamente em que estágio está sua denúncia e receba atualizações sobre o progresso da solução.</p>
                     </div>
                     <div class="card-cidadao">
                         <p class="title-card">Comunidade</p>
-                        <img src="{{url_for('static', filename='assets/images/Comunidade.png)}}" alt="Ícone Comunidade" class="icon-cidadao">
+                        <img src="{{url_for('static', filename='assets/images/Comunidade.png')}}" alt="Ícone Comunidade" class="icon-cidadao">
                         <p class="title-cidadao">Voz Coletiva</p>
                         <p class="descri-cidadao">Junte-se a outros moradores para identificar e resolver os problemas do seu bairro. Juntos temos mais força.</p>
                     </div>

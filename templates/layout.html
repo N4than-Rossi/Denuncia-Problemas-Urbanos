@@ -28,15 +28,17 @@
                 <span class="write-logo">UrbanWeb</span>
             </div>
         </a>
+        {%if show_sobre_nos%}
+        <!--link para página de "sobre nos"-->
+        {%endif%}
+        {% block page_navbar %}{% endblock %}
         <div class="perfil-photo">
             <nav>
-                <a href="perfil.html"><!--O nome da função no app.py que mostra o perfil.html no lugar de "perfil.html"-->
+                <a href="{{url_for('show_acess')}}"><!--O nome da função no app.py que mostra o perfil.html no lugar de "perfil.html"-->
                     <img src="{{url_for('static',filename='assets/images/perfil.png')}}" alt="perfil" height="60">
                 </a>
             </nav>
         </div>
-        
-        {% block page_navbar %}{% endblock %}
     </header>
     <main>
         {%block content%}

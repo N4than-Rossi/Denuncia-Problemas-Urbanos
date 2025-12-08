@@ -1,0 +1,34 @@
+{%extends 'layout.html'%}
+
+{% block title %} Urban Web - Login {% endblock %}
+    
+{% block head_extra %} 
+   <script src="{{url_for('static', filename='js/login.js')}}" defer></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}"> 
+{% endblock %}
+{% block content %}
+
+<div class="form-page-login-container">
+            <h2>Login do Cidadão</h2>
+            <div class="form-container">
+            <form id="login-citizen-form" action="{{url_for('process_login_citizen')}}" method="POST" enctype="multipart/form-data">
+                <div class="form-login-grupo">
+                    <label for="cidadao-info">E-mail ou CPF</label>
+                    <input type="text" placeholder="Digite seu e-mail ou CPF">
+                </div>
+
+                <div class="form-login-grupo">
+                    <label for="cidadao-info">Senha</label>
+                    <input type="password" placeholder="Digite sua senha">
+                </div>
+
+               <button id="submit-login-cidadao" type="submit" class="btn-login">Entrar</button>
+                <div class="forgot">
+                    <a href="">Esqueci minha senha</a>
+                </div>
+            </form>
+
+
+        </div>
+        </div>
+  {% endblock %}
